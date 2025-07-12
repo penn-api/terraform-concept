@@ -21,15 +21,8 @@ data "aws_security_group" "example" {
 
 resource "aws_instance" "this" {
   ami                     = "ami-01c837d5176a7605d"
-  instance_type           = "t3.nano" #-->t3.nano
+  instance_type           = "t3.nano"
   vpc_security_group_ids = [data.aws_security_group.example.id]
-#does not work for the modifing instance types.
-#     lifecycle {
-#     create_before_destroy = true   
-#   }
 
-  lifecycle {
-    prevent_destroy = false
-  }
 
 }
